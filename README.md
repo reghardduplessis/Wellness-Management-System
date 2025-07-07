@@ -1,5 +1,7 @@
 # 🧠 BC Student Wellness Management System
 
+## THIS IS PLACEHOLDER INFO
+
 ## 📘 Overview
 
 This is a Java-based application developed as part of the **PRG3781 Project (2025)** for **Belgium Campus**. The system assists with student wellness management by providing:
