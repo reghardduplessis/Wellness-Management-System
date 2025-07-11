@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login - BC Wellness System</title>
+    <title>Login</title>
     <style>
         body {
             font-family: Arial, sans-serif;

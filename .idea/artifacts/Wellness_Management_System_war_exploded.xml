@@ -8,7 +8,9 @@
         <element id="directory" name="classes">
           <element id="module-output" name="Wellness-Management-System" />
         </element>
+        <element id="file-copy" path="$PROJECT_DIR$/web-app/index.jsp" />
       </element>
+      <element id="file-copy" path="$PROJECT_DIR$/web-app/login.jsp" />
     </root>
   </artifact>
 </component>
