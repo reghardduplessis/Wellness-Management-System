@@ -50,6 +50,35 @@ BC-Wellness-Management/
 │ └── schema_postgresql.sql
 ├── README.md
 └── LICENSE
+
+/WebContent
+├── index.jsp
+├── register.jsp
+├── login.jsp
+├── dashboard.jsp
+/src
+├── RegisterServlet.java
+├── LoginServlet.java
+/lib
+└── (JDBC PostgreSQL Driver)
+
+/src
+ ├── controller
+ │    ├── AppointmentController.java
+ │    ├── CounselorController.java
+ │    └── FeedbackController.java
+ ├── model
+ │    ├── Appointment.java
+ │    ├── Counselor.java
+ │    ├── Feedback.java
+ │    └── DBConnection.java
+ ├── view
+ │    ├── DashboardView.java
+ │    ├── AppointmentView.java
+ │    ├── CounselorView.java
+ │    └── FeedbackView.java
+ └── Main.java
+
 ```
 
 ---
