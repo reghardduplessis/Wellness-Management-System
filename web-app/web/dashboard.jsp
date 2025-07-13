@@ -38,7 +38,7 @@
 <body>
 
 <div class="dashboard-container">
-    <h2>Welcome, <%= studentName %>!</h2>
+    <h2>Welcome, Student Name!</h2>
     <p>You have successfully logged in to the BC Wellness Management System.</p>
 
     <form action="LogoutServlet" method="post">
