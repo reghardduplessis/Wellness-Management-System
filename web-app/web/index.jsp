@@ -2,7 +2,7 @@
 <%--<%@ page import="javax.servlet.http.HttpSession" %>--%>
 <%
 //    HttpSession session = request.getSession(false);
-    String studentName = "null";
+    String studentName = "Steve";
 //    if (session != null) {
 //        studentName = (String) session.getAttribute("studentName");
 //    }
