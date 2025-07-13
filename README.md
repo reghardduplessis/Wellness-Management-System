@@ -50,6 +50,32 @@ BC-Wellness-Management/
 │ └── schema_postgresql.sql
 ├── README.md
 └── LICENSE
+
+Wellness-Management-System/
+├── desktop-app/
+│
+├── web-app/
+│   ├── src/
+│   │   ├── servlets/
+│   │   │   ├── LoginServlet.java
+│   │   │   └── RegisterServlet.java
+│   │   └── utils/
+│   │        └── AuthUtils.java
+│   │
+│   ├── web/                                ← Web root folder
+│   │    ├── index.jsp                      ← Homepage
+│   │    ├── login.jsp                      ← Login form
+│   │    ├── register.jsp                   ← Registration form
+│   │    └── WEB-INF/                  
+│   │        └── web.xml                    ← Deployment descriptor (mandatory for Tomcat)
+│   │
+│   ├── .idea/                              ← IntelliJ project settings (auto-generated)
+│   ├── out/                                ← Compiled output (auto-generated)
+│   ├── web-app.iml                         ← IntelliJ module file
+│   └── lib/                                
+│
+│
+
 ```
 
 ---
