@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="web-app:web exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/web_app_web_exploded</output-path>
+  <artifact type="exploded-war" name="BC_Wellness_Management_System">
+    <output-path>$PROJECT_DIR$/out/artifacts/BC_Wellness_Management_System</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="web-app/web/web" />
       <element id="directory" name="WEB-INF">
