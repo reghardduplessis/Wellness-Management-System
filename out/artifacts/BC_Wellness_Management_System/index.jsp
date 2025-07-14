@@ -28,7 +28,6 @@
             text-align: center;
         }
 
-        /* Navbar */
         .navbar {
             background-color: #2196F3;
             padding: 15px 30px;
@@ -36,17 +35,66 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
-        .navbar a {
+        .else-nav {
             color: white;
             text-decoration: none;
             margin-left: 20px;
             font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease-in-out;
         }
 
-        .navbar form {
-            display: inline;
+        .else-nav:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .brand {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .user-dropdown {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .dropdown-toggle {
+            font-weight: bold;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: white;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            overflow: hidden;
+            z-index: 1000;
+            min-width: 160px;
+        }
+
+        .dropdown-menu a,
+        .dropdown-menu button {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            text-align: left;
+            text-decoration: none;
+            background: none;
+            border: none;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .dropdown-menu a:hover,
+        .dropdown-menu button:hover {
+            background-color: #f2f2f2;
         }
 
         /* Header */
@@ -68,12 +116,6 @@
             color: #555;
             max-width: 700px;
             margin: 0 auto;
-        }
-
-        /* Content */
-        .content {
-            text-align: center;
-            padding: 40px 20px;
         }
 
         .btn {
@@ -106,17 +148,20 @@
 
 <!-- Navbar -->
 <div class="navbar">
-    <div><strong>BC Wellness System</strong></div>
-    <div>
-        <% if (studentName != null) { %>
-        <span>Welcome, <%= studentName %></span>
-        <a href="dashboard.jsp">Dashboard</a>
-        <form action="LogoutServlet" method="post" style="display:inline;">
-            <input type="submit" value="Logout" style="background:none;border:none;color:white;cursor:pointer;" />
-        </form>
+    <div class="brand">BC Wellness System</div>
+    <div class="user-dropdown">
+        <% if (studentName != null && !studentName.isEmpty()) { %>
+        <div class="dropdown-toggle" onclick="toggleDropdown()">
+            Welcome, <%= studentName %> ⏷
+        </div>
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="dashboard.jsp">Dashboard</a>
+            <form action="LogoutServlet" method="post">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
         <% } else { %>
-        <a href="login.jsp">Login</a>
-        <a href="register.jsp">Register</a>
+        <a class="else-nav" href="login.jsp">Login</a>
         <% } %>
     </div>
 </div>
@@ -145,6 +190,23 @@
 <div class="footer">
     © 2025 Belgium Campus | Student Wellness Management System
 </div>
+
+<script>
+    function toggleDropdown() {
+        const menu = document.getElementById("dropdownMenu");
+        menu.style.display = (menu.style.display === "block") ? "none" : "block";
+    }
+
+    // Optional: close dropdown when clicking outside
+    window.onclick = function(event) {
+        const dropdown = document.getElementById("dropdownMenu");
+        if (!event.target.matches('.dropdown-toggle')) {
+            if (dropdown && dropdown.style.display === "block") {
+                dropdown.style.display = "none";
+            }
+        }
+    };
+</script>
 
 </body>
 </html>
