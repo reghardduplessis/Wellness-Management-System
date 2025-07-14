@@ -2,7 +2,7 @@
 <%--<%@ page import="javax.servlet.http.HttpSession" %>--%>
 <%
 //    HttpSession session = request.getSession(false);
-    String studentName = "null";
+    String studentName = "";
 //    if (session != null) {
 //        studentName = (String) session.getAttribute("studentName");
 //    }
@@ -12,12 +12,20 @@
 <head>
     <title>BC Student Wellness Management System</title>
     <style>
-        body {
-            font-family: "Segoe UI", sans-serif;
+        html, body {
+            height: 100%;
             margin: 0;
             padding: 0;
+            font-family: "Segoe UI", sans-serif;
             background-color: #f0f2f5;
-            color: #333;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1; /* This makes the content take all available space */
+            padding: 40px 20px;
+            text-align: center;
         }
 
         /* Navbar */
@@ -91,10 +99,6 @@
             text-align: center;
             padding: 20px;
             font-size: 14px;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            margin-top: 60px;
         }
     </style>
 </head>
@@ -128,7 +132,7 @@
 </div>
 
 <!-- Main Content -->
-<div class="content">
+<div class="main-content">
     <% if (studentName == null) { %>
     <a href="login.jsp"><button class="btn">Login</button></a>
     <a href="register.jsp"><button class="btn">Register</button></a>
