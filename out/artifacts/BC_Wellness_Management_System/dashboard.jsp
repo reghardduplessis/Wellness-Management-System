@@ -22,16 +22,6 @@
             flex-direction: column;
         }
 
-        .dashboard-container {
-            width: 500px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.15);
-            text-align: center;
-        }
-
         /* Navbar */
         .navbar {
             background-color: #2196F3;
@@ -99,7 +89,8 @@
 
         .dropdown-menu a:hover,
         .dropdown-menu button:hover {
-            background-color: #f2f2f2;
+            background-color: #2167f3;
+            color: white;
         }
 
 
@@ -112,22 +103,102 @@
         }
         .btn-logout {
             padding: 10px 20px;
-            background: #f44336;
+            background: #2196F3;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
         .btn-logout:hover {
-            background: #d32f2f;
+            background: #2167f3;
         }
 
         .main-content {
             flex: 1;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: flex-start;
             align-items: center;
             padding: 20px;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+
+        .dashboard-header h1 {
+            font-size: 28px;
+            color: #2196F3;
+        }
+
+        .dashboard-header p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            margin: 0 auto;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .actions-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .action-card {
+            background-color: #e3f2fd;
+            padding: 20px 30px;
+            text-decoration: none;
+            color: #0d47a1;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            min-width: 200px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .action-card:hover {
+            background-color: #bbdefb;
+            transform: translateY(-2px);
+        }
+
+        /* Upcoming Appointments */
+        .upcoming-section {
+            margin: 50px auto;
+            max-width: 900px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .upcoming-section h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .appointments-list {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .appointment-card {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
         }
 
         /* Footer */
@@ -160,13 +231,39 @@
 
 <!-- Main Content Area -->
 <main class="main-content">
-    <div class="dashboard-container">
-        <h2>Welcome, Student Name!</h2>
-        <p>You have successfully logged in to the BC Wellness Management System.</p>
+
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
+        <h1>Welcome to Your Wellness Dashboard, <%= studentName %> 👋</h1>
+        <p>Here’s how you can take care of your well-being today.</p>
+    </div>
+
+    <!-- Quick Actions Section -->
+    <div class="quick-actions">
+        <h2>Quick Actions</h2>
+        <div class="actions-grid">
+            <a href="appointments.jsp" class="action-card">📅 Book Appointment</a>
+            <a href="reviews.jsp" class="action-card">📝 Submit Review</a>
+            <a href="counselors.jsp" class="action-card">🔍 Find Counselors</a>
+        </div>
+    </div>
+
+    <!-- Upcoming Appointments Section -->
+    <div class="upcoming-section">
+        <h2>Upcoming Appointments</h2>
+        <div class="appointments-list">
+            <!-- Placeholder for dynamic content -->
+            <div class="appointment-card">
+                <strong>No upcoming appointments.</strong>
+                <p>Once you book, your next session will appear here.</p>
+            </div>
+        </div>
+    </div>
+    
         <form action="LogoutServlet" method="post">
             <input type="submit" class="btn-logout" value="Logout" />
         </form>
-    </div>
+
 </main>
 
 <!-- Footer -->
@@ -180,7 +277,6 @@
         menu.style.display = (menu.style.display === "block") ? "none" : "block";
     }
 
-    // Optional: close dropdown when clicking outside
     window.onclick = function(event) {
         const dropdown = document.getElementById("dropdownMenu");
         if (!event.target.matches('.dropdown-toggle')) {

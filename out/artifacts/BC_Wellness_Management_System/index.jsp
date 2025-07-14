@@ -2,7 +2,7 @@
 <%--<%@ page import="javax.servlet.http.HttpSession" %>--%>
 <%
 //    HttpSession session = request.getSession(false);
-    String studentName = "";
+    String studentName = "Steve";
 //    if (session != null) {
 //        studentName = (String) session.getAttribute("studentName");
 //    }
@@ -49,7 +49,7 @@
         }
 
         .else-nav:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: #2167f3;
         }
 
         .brand {
@@ -94,7 +94,8 @@
 
         .dropdown-menu a:hover,
         .dropdown-menu button:hover {
-            background-color: #f2f2f2;
+            background-color: #2167f3;
+            color: white;
         }
 
         /* Header */
@@ -131,7 +132,7 @@
         }
 
         .btn:hover {
-            background-color: #45a049;
+            background-color: #2167f3;
         }
 
         /* Footer */
@@ -197,7 +198,7 @@
         menu.style.display = (menu.style.display === "block") ? "none" : "block";
     }
 
-    // Optional: close dropdown when clicking outside
+
     window.onclick = function(event) {
         const dropdown = document.getElementById("dropdownMenu");
         if (!event.target.matches('.dropdown-toggle')) {
