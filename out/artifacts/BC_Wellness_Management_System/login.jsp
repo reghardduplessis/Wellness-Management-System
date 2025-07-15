@@ -74,7 +74,7 @@
         }
 
         .btn:hover {
-            background: #0b7dda;
+            background: #2167f3;
         }
 
         /* Footer */
