@@ -1,11 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--<%@ page import="javax.servlet.http.HttpSession" %>--%>
 <%
-//    HttpSession session = request.getSession(false);
     String studentName = "Steve";
-//    if (session != null) {
-//        studentName = (String) session.getAttribute("studentName");
-//    }
+    /*
+    HttpSession sessions = request.getSession(false);
+    if (sessions == null || session.getAttribute("studentName") == null) {
+        response.sendRedirect("login.jsp?error=Please+login+first");
+        return;
+    }
+
+    String studentName = (String) session.getAttribute("studentName");
+     */
 %>
 <!DOCTYPE html>
 <html>
