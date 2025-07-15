@@ -26,13 +26,17 @@ public class RegisterServlet extends HttpServlet {
         String DB_USER = props.getProperty("db.user");
         String DB_PASSWORD = props.getProperty("db.password");
 
+        String student_number = request.getParameter("student_number");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String phone = request.getParameter("phone");
+        String name  = request.getParameter("name");
+        String surname = request.getParameter("surname");
 
         // Input validation
-        if (email == null || password == null || phone == null ||
-                email.trim().isEmpty() || password.trim().isEmpty() || phone.trim().isEmpty()) {
+        if (email == null || password == null || phone == null || student_number == null ||name == null ||surname == null ||
+                email.trim().isEmpty() || password.trim().isEmpty() || phone.trim().isEmpty() || student_number.trim().isEmpty()
+                || name.trim().isEmpty()|| surname.trim().isEmpty()) {
             request.setAttribute("error", "All fields are required.");
             request.getRequestDispatcher("register.jsp").forward(request, response);
             return;
@@ -47,11 +51,14 @@ public class RegisterServlet extends HttpServlet {
             // Load JDBC driver
             Class.forName("org.postgresql.Driver");
             try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
-                String sql = "INSERT INTO users (email, password, phone) VALUES (?, ?, ?)";
+                String sql = "INSERT INTO users (student_number,email, password, phone,name,surname) VALUES (?, ?, ?, ?, ?, ?,)";
                 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                    stmt.setString(1, email);
-                    stmt.setString(2, password); // Note: Use hashed passwords in production
-                    stmt.setString(3, phone);
+                    stmt.setString(1, student_number);
+                    stmt.setString(2, email);
+                    stmt.setString(3, password); // Note: Use hashed passwords in production
+                    stmt.setString(4, phone);
+                    stmt.setString(5, name);
+                    stmt.setString(6, surname);
                     int rows = stmt.executeUpdate();
 
                     if (rows > 0) {
