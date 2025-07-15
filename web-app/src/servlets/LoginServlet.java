@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import utils.AuthenticateUtils;
+import utils.DBUtils;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -22,11 +24,11 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Load configuration
-        Properties props = new Properties();
-        props.load(getServletContext().getResourceAsStream(CONFIG_PATH));
-        String DB_URL = props.getProperty("db.url");
-        String DB_USER = props.getProperty("db.user");
-        String DB_PASSWORD = props.getProperty("db.password");
+        try {
+            Connection conn = DBUtils.getConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -41,17 +43,25 @@ public class LoginServlet extends HttpServlet {
         try {
             // Load JDBC driver
             Class.forName("org.postgresql.Driver");
-            try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
-                String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+            try (Connection conn = DBUtils.getConnection()) {
+                String sql = "SELECT * FROM users WHERE email = ?";
+                String hashedPassword = AuthenticateUtils.hashPassword(password);
+
                 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                     stmt.setString(1, email);
-                    stmt.setString(2, password); // Note: Use hashed passwords in production
                     ResultSet rs = stmt.executeQuery();
 
                     if (rs.next()) {
-                        HttpSession session = request.getSession();
-                        session.setAttribute("user", email);
-                        response.sendRedirect("dashboard.jsp");
+                        String storedHash = rs.getString("password");
+                        if (AuthenticateUtils.hashPassword(password).equals(storedHash)) {
+                            HttpSession session = request.getSession();
+                            session.setAttribute("user", email);
+                            session.setAttribute("studentName", rs.getString("name")); // if available
+                            response.sendRedirect("dashboard.jsp");
+                        } else {
+                            request.setAttribute("error", "Invalid email or password.");
+                            request.getRequestDispatcher("login.jsp").forward(request, response);
+                        }
                     } else {
                         request.setAttribute("error", "Invalid email or password.");
                         request.getRequestDispatcher("login.jsp").forward(request, response);
