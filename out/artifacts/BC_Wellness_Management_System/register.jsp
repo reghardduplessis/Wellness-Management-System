@@ -68,14 +68,14 @@
         .btn {
             width: 100%;
             padding: 10px;
-            background: #0b7dda;
+            background: #2196F3;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
         .btn:hover {
-            background: #0b7dda;
+            background: #2167f3;
         }
 
         /* Footer */
