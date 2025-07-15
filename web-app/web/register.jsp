@@ -4,22 +4,58 @@
 <head>
     <title>Register - BC Wellness System</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #eef1f5;
-            padding: 50px;
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", sans-serif;
+            background-color: #ccd6e4;
+            display: flex;
+            flex-direction: column;
         }
-        .register-container {
-            width: 400px;
+
+        .register-header {
+            background-color: #2196F3;
+            color: white;
+            text-align: center;
+            padding: 40px 20px 30px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        .register-header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .register-header p {
+            font-size: 16px;
+            max-width: 700px;
             margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .register-container {
+            width: 100%;
+            max-width: 450px;
             background: white;
-            padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            padding: 40px;
         }
+
         h2 {
             text-align: center;
         }
+
         input[type="text"],
         input[type="email"],
         input[type="password"] {
@@ -32,66 +68,68 @@
         .btn {
             width: 100%;
             padding: 10px;
-            background: #0b7dda;
+            background: #2196F3;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
         .btn:hover {
-            background: #0b7dda;
+            background: #2167f3;
         }
-        .message {
+
+        /* Footer */
+        .footer {
+            background-color: #2196F3;
+            color: #ffffff;
             text-align: center;
-            color: #0b7dda;
-        }
-        .error {
-            text-align: center;
-            color: red;
+            padding: 20px;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
 
-<div class="register-container">
-    <h2>Create Student Account</h2>
+<header class="register-header">
+    <h1>Join the Wellness Journey</h1>
+    <p>Empower your academic success by taking care of your mental well-being. Your wellness journey starts here.</p>
+</header>
 
-<%--    &lt;%&ndash; Optional: show success or error message from servlet &ndash;%&gt;--%>
-<%--    <%--%>
-<%--        String message = (String) request.getAttribute("message");--%>
-<%--        String error = (String) request.getAttribute("errorMessage");--%>
-<%--        if (message != null) {--%>
-<%--    %>--%>
-<%--    <div class="message"><%= message %></div>--%>
-<%--    <% } else if (error != null) { %>--%>
-<%--    <div class="error"><%= error %></div>--%>
-<%--    <% } %>--%>
+<main class="main-content">
+    <div class="register-container">
+        <h2>Create Student Account</h2>
 
-    <form action="RegisterServlet" method="post">
-        <label for="studentNumber">Student Number:</label>
-        <input type="text" name="studentNumber" required />
+        <form action="RegisterServlet" method="post">
+            <label for="studentNumber">Student Number:</label>
+            <input type="text" name="studentNumber" required />
 
-        <label for="name">First Name:</label>
-        <input type="text" name="name" required />
+            <label for="name">First Name:</label>
+            <input type="text" name="name" required />
 
-        <label for="surname">Surname:</label>
-        <input type="text" name="surname" required />
+            <label for="surname">Surname:</label>
+            <input type="text" name="surname" required />
 
-        <label for="email">Email:</label>
-        <input type="email" name="email" required />
+            <label for="email">Email:</label>
+            <input type="email" name="email" required />
 
-        <label for="phone">Phone:</label>
-        <input type="text" name="phone" pattern="[0-9]{10}" required title="Enter a 10-digit phone number" />
+            <label for="phone">Phone:</label>
+            <input type="text" name="phone" pattern="[0-9]{10}" required title="Enter a 10-digit phone number" />
 
-        <label for="password">Password:</label>
-        <input type="password" name="password" required minlength="6" />
+            <label for="password">Password:</label>
+            <input type="password" name="password" required minlength="6" />
 
-        <input type="submit" value="Register" class="btn" />
-    </form>
+            <input type="submit" value="Register" class="btn" />
+        </form>
 
-    <p style="text-align:center; margin-top: 10px;">
-        Already have an account? <a href="login.jsp">Login here</a>
-    </p>
+        <p style="text-align:center; margin-top: 10px;">
+            Already have an account? <a href="login.jsp">Login here</a>
+        </p>
+    </div>
+</main>
+
+<!-- Footer -->
+<div class="footer">
+    © 2025 Belgium Campus | Student Wellness Management System
 </div>
 
 </body>

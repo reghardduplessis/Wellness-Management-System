@@ -17,7 +17,7 @@
             margin: 0;
             padding: 0;
             font-family: "Segoe UI", sans-serif;
-            background-color: #f0f2f5;
+            background-color: #ccd6e4;
             display: flex;
             flex-direction: column;
         }
@@ -100,6 +100,7 @@
 
         h2 {
             margin-bottom: 20px;
+            color: #2196F3;
         }
         .btn-logout {
             padding: 10px 20px;
@@ -203,8 +204,8 @@
 
         /* Footer */
         .footer {
-            background-color: #222;
-            color: #bbb;
+            background-color: #2196F3;
+            color: #ffffff;
             text-align: center;
             padding: 20px;
             font-size: 14px;

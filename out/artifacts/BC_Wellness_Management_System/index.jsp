@@ -17,13 +17,13 @@
             margin: 0;
             padding: 0;
             font-family: "Segoe UI", sans-serif;
-            background-color: #f0f2f5;
+            background-color: #ccd6e4;
             display: flex;
             flex-direction: column;
         }
 
         .main-content {
-            flex: 1; /* This makes the content take all available space */
+            flex: 1;
             padding: 40px 20px;
             text-align: center;
         }
@@ -71,7 +71,7 @@
             position: absolute;
             right: 0;
             top: 100%;
-            background-color: white;
+            background-color: #ccd6e4;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
             border-radius: 5px;
             overflow: hidden;
@@ -100,7 +100,7 @@
 
         /* Header */
         .header {
-            background-color: #ffffff;
+            background-color: #ccd6e4;
             padding: 60px 30px 40px 30px;
             text-align: center;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -137,8 +137,8 @@
 
         /* Footer */
         .footer {
-            background-color: #222;
-            color: #bbb;
+            background-color: #2196F3;
+            color: #ffffff;
             text-align: center;
             padding: 20px;
             font-size: 14px;
