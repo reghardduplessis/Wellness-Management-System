@@ -21,6 +21,53 @@ public class Appointment {
         this(0, student, counselor, date, time, status);
     }
 
-    // Getters and setters omitted for brevity (include all)
-    // ...
+    // Getters and setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getStudent() {
+        return student;
+    }
+
+    public void setStudent(String student) {
+        this.student = student;
+    }
+
+    public String getCounselor() {
+        return counselor;
+    }
+
+    public void setCounselor(String counselor) {
+        this.counselor = counselor;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
 }
