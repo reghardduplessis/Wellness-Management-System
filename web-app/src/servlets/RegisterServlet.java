@@ -1,15 +1,16 @@
 package servlets;
 
 import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Properties;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import utils.AuthenticateUtils;
-import utils.DBUtils;
 
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
@@ -19,11 +20,11 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Load configuration
-        try {
-            Connection conn = DBUtils.getConnection();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        Properties props = new Properties();
+        props.load(getServletContext().getResourceAsStream(CONFIG_PATH));
+        String DB_URL = props.getProperty("db.url");
+        String DB_USER = props.getProperty("db.user");
+        String DB_PASSWORD = props.getProperty("db.password");
 
         String student_number = request.getParameter("student_number");
         String email = request.getParameter("email");
@@ -40,19 +41,11 @@ public class RegisterServlet extends HttpServlet {
             request.getRequestDispatcher("register.jsp").forward(request, response);
             return;
         }
-        if (!AuthenticateUtils.isValidEmail(email)) {
+        if (!email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
             request.setAttribute("error", "Invalid email format.");
             request.getRequestDispatcher("register.jsp").forward(request, response);
             return;
         }
-        if (!AuthenticateUtils.isStrongPassword(password)) {
-            request.setAttribute("error", "Password must include 1 uppercase, 1 lowercase, 1 number, and 1 special character.");
-            request.getRequestDispatcher("register.jsp").forward(request, response);
-            return;
-        }
-
-        String hashedPassword = AuthenticateUtils.hashPassword(password);
-
 
         try {
             // Load JDBC driver
@@ -66,25 +59,6 @@ public class RegisterServlet extends HttpServlet {
                     stmt.setString(4, phone);
                     stmt.setString(5, name);
                     stmt.setString(6, surname);
-            try (Connection conn = DBUtils.getConnection()) {
-                // Check for existing email
-                String checkSql = "SELECT COUNT(*) FROM users WHERE email = ?";
-                try (PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
-                    checkStmt.setString(1, email);
-                    ResultSet rs = checkStmt.executeQuery();
-                    if (rs.next() && rs.getInt(1) > 0) {
-                        request.setAttribute("error", "Email already exists.");
-                        request.getRequestDispatcher("register.jsp").forward(request, response);
-                        return;
-                    }
-                }
-
-                // Insert new user
-                String sql = "INSERT INTO users (email, password, phone) VALUES (?, ?, ?)";
-                try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                    stmt.setString(1, email);
-                    stmt.setString(2, hashedPassword);
-                    stmt.setString(3, phone);
                     int rows = stmt.executeUpdate();
 
                     if (rows > 0) {

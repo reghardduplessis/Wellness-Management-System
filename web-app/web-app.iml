@@ -32,5 +32,6 @@
     <orderEntry type="library" name="postgresql-42.7.7" level="project" />
     <orderEntry type="library" name="Java EE 6" level="project" />
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Tomcat 9.0.107" level="application_server_libraries" />
   </component>
 </module>
