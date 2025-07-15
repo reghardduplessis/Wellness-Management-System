@@ -1,11 +1,10 @@
-package view;
+package LibrarySystem.view;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class MainDashboard extends javax.swing.JFrame {
-
  
     public MainDashboard() {
        // Set up the main frame
