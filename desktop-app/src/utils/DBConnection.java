@@ -15,7 +15,7 @@ public class DBConnection {
     private DBConnection() {}
 
     public static Connection getConnection() {
-        if (connection == null) {
+            if (connection == null) {
             try {
                 connection = DriverManager.getConnection(URL, USER, PASSWORD);
             } catch (SQLException e) {
