@@ -6,26 +6,16 @@ public class Counselor {
     private String specialization;
     private String availability;
 
-    public Counselor(int id, String name, String specialization, String availability) {
-        this.id = id;
+    public Counselor( String name, String specialization, String availability) {
         this.name = name;
         this.specialization = specialization;
         this.availability = availability;
     }
 
     public Counselor(String name, String specialization, String availability) {
-        this(0, name, specialization, availability);
+        this( name, specialization, availability);
     }
 
-    // Getters and setters...
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

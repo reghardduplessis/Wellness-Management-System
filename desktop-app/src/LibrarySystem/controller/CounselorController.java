@@ -43,5 +43,25 @@ public class CounselorController {
         return list;
     }
 
-    // TODO: updateCounselor(), deleteCounselor()
+    public static void updateCounselor(Counselor counselor) throws SQLException {
+        String sql = "UPDATE Counselors SET name=?, specialization=?, availability=? WHERE name=?";
+        try(Connection conn = JavaDBConnection.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setString(1, counselor.getName());
+            pstmt.setString(2, counselor.getSpecialization());
+            pstmt.setString(3, counselor.getavailability());
+            pstmt.executeUpdate();
+
+        }
+    }
+
+    public static void deleteCounselor(String name) throws SQLException {
+        String sql = "DELETE FROM Counselors WHERE name=?";
+        try(Connection conn = JavaDBConnection.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql) ) {
+            pstmt.setString(1, name);
+            pstmt.executeUpdate();
+        }
+    }
+
 }
